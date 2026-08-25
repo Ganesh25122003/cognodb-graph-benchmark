@@ -1,0 +1,14 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+benchmark/data/raw/*
+benchmark/data/processed/*
+benchmark/results/raw/*
+benchmark/results/processed/*
+benchmark/results/charts/*
+!benchmark/data/raw/.gitkeep
+!benchmark/data/processed/.gitkeep
+!benchmark/results/raw/.gitkeep
+!benchmark/results/processed/.gitkeep
+!benchmark/results/charts/.gitkeep
