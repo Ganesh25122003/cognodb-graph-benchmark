@@ -1,20 +1,74 @@
 import time
-from benchmark.utils.connection import bolt_driver
 from benchmark.utils.dataset import load_edges
 
 
-def load(driver, edge_file, batch_size=1000):
+def load(driver, edge_file, batch_size=5000):
     edges = list(load_edges(edge_file))
+
     start = time.perf_counter()
-    with driver.session() as session:
-        session.run("MATCH (n) DETACH DELETE n").consume()
+
+    nodes = sorted({node for edge in edges for node in edge})
+
+    with driver.session(database="neo4j") as session:
+
+        # Clean previous benchmark data
+        session.run(
+            "MATCH (n:Person) DETACH DELETE n"
+        ).consume()
+
+        # Ensure fast node lookup
+        session.run(
+            """
+            CREATE CONSTRAINT person_id_unique IF NOT EXISTS
+            FOR (n:Person)
+            REQUIRE n.id IS UNIQUE
+            """
+        ).consume()
+
+        # Load nodes
+        for i in range(0, len(nodes), batch_size):
+            batch = nodes[i:i + batch_size]
+
+            session.run(
+                """
+                UNWIND $ids AS id
+                MERGE (:Person {id: id})
+                """,
+                ids=batch,
+            ).consume()
+
+            print(
+                f"Nodes: {min(i + batch_size, len(nodes)):,}/{len(nodes):,}"
+            )
+
+        # Load relationships
         for i in range(0, len(edges), batch_size):
             batch = edges[i:i + batch_size]
+
             session.run(
-                "UNWIND $rows AS r MERGE (a:Person {id:r.source}) MERGE (b:Person {id:r.target}) MERGE (a)-[:KNOWS]->(b)",
-                rows=[{"source": s, "target": t} for s, t in batch],
+                """
+                UNWIND $rows AS r
+                MATCH (a:Person {id: r.source})
+                MATCH (b:Person {id: r.target})
+                CREATE (a)-[:KNOWS]->(b)
+                """,
+                rows=[
+                    {"source": source, "target": target}
+                    for source, target in batch
+                ],
             ).consume()
+
+            print(
+                f"Relationships: "
+                f"{min(i + batch_size, len(edges)):,}/{len(edges):,}"
+            )
+
     elapsed = time.perf_counter() - start
-    nodes = len({x for e in edges for x in e})
-    return {"edges": len(edges), "nodes": nodes, "seconds": elapsed,
-            "nodes_per_sec": nodes / elapsed, "relationships_per_sec": len(edges) / elapsed}
+
+    return {
+        "edges": len(edges),
+        "nodes": len(nodes),
+        "seconds": elapsed,
+        "nodes_per_sec": len(nodes) / elapsed,
+        "relationships_per_sec": len(edges) / elapsed,
+    }
