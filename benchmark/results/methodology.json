@@ -1,0 +1,27 @@
+{
+  "dataset": {
+    "name": "SNAP soc-Pokec social network",
+    "relationships": 200000,
+    "nodes": 91489
+  },
+  "read_iterations": 100,
+  "warmup": "Configured in Settings",
+  "start_nodes": 100,
+  "traversal_depths": [1, 2, 3],
+  "concurrency": 10,
+  "platform": "CognoDB",
+  "client": "Python Neo4j Bolt driver",
+  "region": "Not recorded",
+  "client_machine": "Windows local machine",
+  "resource_specs": {
+    "vCPU": "Not observable from benchmark client",
+    "RAM": "Not observable from benchmark client",
+    "storage": "Not observable from benchmark client"
+  },
+  "caveats": [
+    "Only CognoDB was actually benchmarked in this run.",
+    "Four additional database platforms were not available for real execution.",
+    "No comparison numbers are fabricated.",
+    "Load wall-clock timing was not captured during the successful 200000-edge load."
+  ]
+}

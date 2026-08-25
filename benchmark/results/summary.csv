@@ -1,0 +1,9 @@
+platform,metric,p50_ms,p95_ms,mean_ms,min_ms,max_ms,operations,concurrency,qps
+CognoDB,traversal_1hop,308.0414,520.25964,336.816564,255.6949,848.8207,,,, 
+CognoDB,traversal_2hop,307.8411,497.08971,341.497885,256.6765,915.2023,,,,
+CognoDB,traversal_3hop,308.93735,587.44289,352.178901,255.812,789.0429,,,,
+CognoDB,point_lookup,313.9357,528.41318,381.902348,262.1089,1125.8427,,,,
+CognoDB,indexed_lookup,330.7026,628.380525,388.977005,254.7995,1028.8734,,,,
+CognoDB,aggregation_count,309.39585,553.988085,354.279325,256.2251,930.395,,,,
+CognoDB,aggregation_group_by,1433.56605,1738.041335,1475.887547,1295.8268,2665.1,,,,
+CognoDB,mixed_workload,,,,,,100,10,20.38568243

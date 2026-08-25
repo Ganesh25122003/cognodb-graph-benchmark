@@ -1,0 +1,12 @@
+{
+  "platform": "CognoDB",
+  "nodes": 91489,
+  "relationships": 200000,
+  "load_time_seconds": "not recorded",
+  "nodes_per_second": "not recorded",
+  "relationships_per_second": "not recorded",
+  "dataset": "SNAP soc-Pokec",
+  "edge_limit": 200000,
+  "load_method": "Neo4j Bolt driver with batched Cypher UNWIND/MERGE",
+  "batch_size": 250
+}
