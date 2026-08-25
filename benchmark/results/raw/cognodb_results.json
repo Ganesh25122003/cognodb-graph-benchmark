@@ -1,0 +1,80 @@
+[
+  {
+    "platform": "CognoDB",
+    "metric": "traversal_1hop",
+    "count": 100,
+    "min_ms": 255.6949000008899,
+    "p50_ms": 308.0414000005476,
+    "p95_ms": 520.2596399989487,
+    "mean_ms": 336.81656400001884,
+    "max_ms": 848.8207000009425
+  },
+  {
+    "platform": "CognoDB",
+    "metric": "traversal_2hop",
+    "count": 100,
+    "min_ms": 256.67650000104913,
+    "p50_ms": 307.8410999987682,
+    "p95_ms": 497.0897099997273,
+    "mean_ms": 341.4978849999534,
+    "max_ms": 915.2022999987821
+  },
+  {
+    "platform": "CognoDB",
+    "metric": "traversal_3hop",
+    "count": 100,
+    "min_ms": 255.81199999942328,
+    "p50_ms": 308.93735000063316,
+    "p95_ms": 587.4428900005114,
+    "mean_ms": 352.17890100009754,
+    "max_ms": 789.0428999999131
+  },
+  {
+    "platform": "CognoDB",
+    "metric": "point_lookup",
+    "count": 100,
+    "min_ms": 262.1089000003849,
+    "p50_ms": 313.9357000000018,
+    "p95_ms": 528.4131799988243,
+    "mean_ms": 381.90234800002145,
+    "max_ms": 1125.842699999339
+  },
+  {
+    "platform": "CognoDB",
+    "metric": "indexed_lookup",
+    "count": 100,
+    "min_ms": 254.79950000044482,
+    "p50_ms": 330.70260000022245,
+    "p95_ms": 628.3805250004662,
+    "mean_ms": 388.977004999997,
+    "max_ms": 1028.8733999987016
+  },
+  {
+    "platform": "CognoDB",
+    "metric": "aggregation_count",
+    "count": 100,
+    "min_ms": 256.2250999999378,
+    "p50_ms": 309.3958500003282,
+    "p95_ms": 553.9880849991274,
+    "mean_ms": 354.27932499989765,
+    "max_ms": 930.3949999994074
+  },
+  {
+    "platform": "CognoDB",
+    "metric": "aggregation_group_by",
+    "count": 100,
+    "min_ms": 1295.8267999983946,
+    "p50_ms": 1433.5660500000813,
+    "p95_ms": 1738.0413349999799,
+    "mean_ms": 1475.8875469999657,
+    "max_ms": 2665.100000000166
+  },
+  {
+    "platform": "CognoDB",
+    "metric": "mixed_workload",
+    "operations": 100,
+    "concurrency": 10,
+    "seconds": 4.905403599999772,
+    "qps": 20.385682433960103
+  }
+]
